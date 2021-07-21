@@ -1,0 +1,125 @@
+:root {
+    --flip-duration: 400ms;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* padding: 50px; */
+    height: 100vh;
+}
+
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: calc(1700px / 3); */
+    /* width: calc(733px / 3); */
+    width: 733px;
+    height: auto;
+    transition: transform ease-in-out var(--flip-duration);
+    z-index: 1;
+}
+
+.page img {
+    height: 100%;
+    width: 100%;
+}
+
+
+#p1 {
+    transform-origin: left;
+    /* border-radius: 0 5px 5px 0; */
+    left: 33.4%;
+}
+
+#p2 {
+    transform-origin: right;
+    /* border-radius: 5px 0 0 5px; */
+    left: -33.3%;
+}
+
+#p3 {
+    z-index: 0;
+}
+
+
+.page>div {
+    position: absolute;
+    display: flex;
+    transition: z-index linear 0s;
+    transition-delay: calc(var(--flip-duration) / 2);
+
+}
+
+.front {
+    z-index: 10;
+}
+
+.back {
+    z-index: 9;
+    transform: rotateY(180deg);
+}
+
+.page.flipped,
+#book.flipped .page {
+    transform: rotateY(180deg);
+}
+
+
+#book.flipped .back {
+    z-index: 9;
+}
+
+#book.flipped .front {
+    z-index: 10;
+}
+
+
+.page.flipped>.back {
+    z-index: 10;
+}
+
+.page.flipped>.front {
+    z-index: 9;
+}
+
+#book.flipped #p3 {
+    transform: rotateY(0deg);
+}
+
+#book.flipped #p3>.back {
+    z-index: 10;
+}
+
+#book.flipped #p3>.front {
+    z-index: 9;
+}
+
+
+.top {
+    z-index: 2;
+}
+
+#book {
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    /* transform-origin: center; */
+    transition: transform ease-in-out var(--flip-duration);
+    width: 100%;
+    height: 100%;
+    transform: scale(0.6);
+    margin: -20%;
+}
+
+#book.flipped {
+    transform: rotateY(180deg) scale(0.6);
+}
